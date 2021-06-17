@@ -41,14 +41,14 @@ public class SampleDataPopulator implements ApplicationRunner {
         final Person person2 = personRepository.save(new Person(null, "Chad"));
         final Person person3 = personRepository.save(new Person(null, "David"));
 
-        issueRatingDataRepository.save(new IssueRatingData(person1, issue1, (random.nextInt(4) + 1)));
-        issueRatingDataRepository.save(new IssueRatingData(person1, issue2, (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person1, issue1, (random.nextFloat() + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person1, issue2, (random.nextFloat() + 1)));
 
-        issueRatingDataRepository.save(new IssueRatingData(person2, issue1, (random.nextInt(4) + 1)));
-        issueRatingDataRepository.save(new IssueRatingData(person2, issue2, (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person2, issue1, (random.nextFloat() + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person2, issue2, (random.nextFloat() + 1)));
 
-        issueRatingDataRepository.save(new IssueRatingData(person3, issue1, (random.nextInt(4) + 1)));
-        issueRatingDataRepository.save(new IssueRatingData(person3, issue2, (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person3, issue1, (random.nextFloat() + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person3, issue2, (random.nextFloat() + 1)));
 
         issueRatingDataRepository.findAll(Sort.by("issueId", "personId")).forEach(issueRating -> System.err.println(">>> " + issueRating));
     }

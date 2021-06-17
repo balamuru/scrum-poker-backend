@@ -1,17 +1,16 @@
 package org.vgb.scrumpoker.data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity public class Issue implements Serializable
 {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
 
     @Column(unique = true) private String name;
+
+
 
     public Issue()
     {
@@ -39,4 +38,11 @@ import java.io.Serializable;
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Issue{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
