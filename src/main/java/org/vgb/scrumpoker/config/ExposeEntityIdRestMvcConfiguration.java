@@ -5,7 +5,8 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.vgb.scrumpoker.data.Issue;
-import org.vgb.scrumpoker.data.IssueRating;
+
+import org.vgb.scrumpoker.data.IssueRatingData;
 import org.vgb.scrumpoker.data.Person;
 
 @Configuration public class ExposeEntityIdRestMvcConfiguration implements RepositoryRestConfigurer
@@ -13,6 +14,7 @@ import org.vgb.scrumpoker.data.Person;
 
     @Override public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors)
     {
-        config.exposeIdsFor(Issue.class, IssueRating.class, Person.class);
+        //allow db id's to be returned for these classes
+        config.exposeIdsFor(Issue.class, IssueRatingData.class, Person.class);
     }
 }

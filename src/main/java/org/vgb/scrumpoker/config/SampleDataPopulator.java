@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.vgb.scrumpoker.data.Issue;
-import org.vgb.scrumpoker.data.IssueRating;
+import org.vgb.scrumpoker.data.IssueRatingData;
 import org.vgb.scrumpoker.data.Person;
-import org.vgb.scrumpoker.repository.IssueRatingRepository;
+import org.vgb.scrumpoker.repository.IssueRatingDataRepository;
 import org.vgb.scrumpoker.repository.IssueRepository;
 import org.vgb.scrumpoker.repository.PersonRepository;
 
@@ -17,17 +17,20 @@ import java.util.Random;
 
 @Profile("dev")
 @Component
-public class SampleDataPopulator implements ApplicationRunner
-{
+public class SampleDataPopulator implements ApplicationRunner {
 
-    @Autowired private PersonRepository personRepository;
+    @Autowired
+    private PersonRepository personRepository;
 
-    @Autowired private IssueRepository issueRepository;
+    @Autowired
+    private IssueRepository issueRepository;
 
-    @Autowired private IssueRatingRepository issueRatingRepository;
+    @Autowired
+    private IssueRatingDataRepository issueRatingDataRepository;
 
-    @Override public void run(final ApplicationArguments args) throws Exception
-    {
+
+    @Override
+    public void run(final ApplicationArguments args)  {
         //populate sample data
 
         final Random random = new Random(System.currentTimeMillis());
@@ -38,16 +41,15 @@ public class SampleDataPopulator implements ApplicationRunner
         final Person person2 = personRepository.save(new Person(null, "Chad"));
         final Person person3 = personRepository.save(new Person(null, "David"));
 
-        issueRatingRepository.save(new IssueRating(person1.getId(), issue1.getId(), (random.nextInt(4) + 1)));
-        issueRatingRepository.save(new IssueRating(person1.getId(), issue2.getId(), (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person1, issue1, (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person1, issue2, (random.nextInt(4) + 1)));
 
-        issueRatingRepository.save(new IssueRating(person2.getId(), issue1.getId(), (random.nextInt(4) + 1)));
-        issueRatingRepository.save(new IssueRating(person2.getId(), issue2.getId(), (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person2, issue1, (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person2, issue2, (random.nextInt(4) + 1)));
 
-        issueRatingRepository.save(new IssueRating(person3.getId(), issue1.getId(), (random.nextInt(4) + 1)));
-        issueRatingRepository.save(new IssueRating(person3.getId(), issue2.getId(), (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person3, issue1, (random.nextInt(4) + 1)));
+        issueRatingDataRepository.save(new IssueRatingData(person3, issue2, (random.nextInt(4) + 1)));
 
-
-        issueRatingRepository.findAll(Sort.by("issueId", "personId")).forEach(issueRating -> System.err.println(">>> " + issueRating));
+        issueRatingDataRepository.findAll(Sort.by("issueId", "personId")).forEach(issueRating -> System.err.println(">>> " + issueRating));
     }
 }

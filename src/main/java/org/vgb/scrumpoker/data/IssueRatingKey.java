@@ -12,7 +12,11 @@ import java.io.Serializable;
     {
     }
 
- 
+    public IssueRatingKey(Long personId, Long issueId) {
+        this.personId = personId;
+        this.issueId = issueId;
+    }
+
     public Long getPersonId()
     {
         return personId;
