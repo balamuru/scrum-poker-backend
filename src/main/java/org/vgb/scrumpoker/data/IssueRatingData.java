@@ -16,10 +16,9 @@ public class IssueRatingData {
     @ManyToOne
     @MapsId("issueId")
     @JoinColumn(name = "issue_id")
-
     private Issue issue;
 
-    private int rating;
+    private float rating;
 
     public IssueRatingData() {
     }
@@ -40,31 +39,31 @@ public class IssueRatingData {
         return issueRatingKey;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public Issue getIssue() {
-        return issue;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
     public void setIssueRatingKey(IssueRatingKey issueRatingKey) {
         this.issueRatingKey = issueRatingKey;
+    }
+
+    public Person getPerson() {
+        return person;
     }
 
     public void setPerson(Person person) {
         this.person = person;
     }
 
+    public Issue getIssue() {
+        return issue;
+    }
+
     public void setIssue(Issue issue) {
         this.issue = issue;
     }
 
-    public void setRating(int rating) {
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
         this.rating = rating;
     }
 }
